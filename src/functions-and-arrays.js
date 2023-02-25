@@ -1,24 +1,78 @@
 // Iteration #1: Find the maximum
-function maxOfTwoNumbers() {}
+function maxOfTwoNumbers(firstNumber, secondNumber) {
+
+  let response = 0;
+  if (firstNumber > secondNumber) {
+    response = firstNumber;
+  } else {
+    response = secondNumber;
+  }
+
+  return response;
+}
 
 
 
 // Iteration #2: Find longest word
 const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
 
-function findLongestWord() {}
+function findLongestWord(wordsList) {
+
+  let response = "";
+  if (wordsList.length === 0) {
+    response = null;
+  } else if (wordsList.length === 1) {
+    response = wordsList[0];
+  } else {
+    wordsList.forEach(element => {
+      if (element.length > response.length) {
+        response = element;
+      }
+    });
+  }
+
+  return response;
+}
 
 
 
 // Iteration #3: Calculate the sum
 const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 
-function sumNumbers() {}
+function sumNumbers(numbers) {
+  let response = 0;
+  if (numbers.length === 0) {
+    response = 0;
+  } else {
+    numbers.forEach((element) => {
+      response = response + element;
+    })
+  }
+
+  return response;
+}
 
 
 
 // Iteration #3.1 Bonus:
-function sum() {}
+function sum(numbers) {
+  let response = 0;
+  if (numbers.length === 0) {
+    response = 0;
+  } else {
+    numbers.forEach((element) => {
+      if (typeof element === 'boolean' || typeof element === 'number') {
+        response = response + element;
+      } else if (typeof element === 'string') {
+        response = element.length + response;
+      } else {
+        throw new Error("Unsupported data type sir or ma'am");
+      }
+    })
+  }
+
+  return response;
+}
 
 
 
@@ -26,16 +80,66 @@ function sum() {}
 // Level 1: Array of numbers
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
-function averageNumbers() {}
+function averageNumbers(numbers) {
+
+  let response = 0;
+
+  if (numbers.length === 0) {
+    response = null;
+  } else {
+    numbers.forEach((element) => {
+      response = response + element;
+    });
+    response = response / numbers.length;
+  }
+  return response;
+}
 
 
 // Level 2: Array of strings
 const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
 
-function averageWordLength() { }
+function averageWordLength(words) {
+
+  let response = 0;
+
+  if (words.length === 0) {
+    response = null;
+  } else {
+    words.forEach((element) => {
+      response = response + element.length;
+    });
+    response = response / words.length;
+  }
+
+  return response;
+}
 
 // Bonus - Iteration #4.1
-function avg() {}
+function avg(elements) {
+  let response = 0;
+  if (elements.length === 0) {
+    response = null;
+  } else {
+    elements.forEach((element) => {
+      console.log("Elemento ->" + element);
+      console.log(typeof element);
+      if (typeof element === 'string') {
+        response = response + element.length;
+      } else if (typeof element === 'boolean') {
+        if (element) {
+          response = response + 1;
+        }
+      } else if(typeof element === 'number') {
+        response = response + element;
+      }
+    });
+    response = response / elements.length;
+  }
+
+  console.log("respuesta -> " + response);
+  return response;
+}
 
 // Iteration #5: Unique arrays
 const wordsUnique = [
@@ -52,14 +156,44 @@ const wordsUnique = [
   'bring'
 ];
 
-function uniquifyArray() {}
+function uniquifyArray(words) {
+
+  let response = [];
+
+  if (words.length === 0) {
+    response = null;
+  } else {
+    words.forEach((element) => {
+      if (!response.includes(element)) {
+        response.push(element);
+      }
+    });
+  }
+
+  return response;
+}
 
 
 
 // Iteration #6: Find elements
 const wordsFind = ['machine', 'subset', 'trouble', 'starting', 'matter', 'eating', 'truth', 'disobedience'];
 
-function doesWordExist() {}
+function doesWordExist(words, expectedWord) {
+
+  let response;
+
+  if (words.length === 0) {
+    response = null;
+  } else {
+    if (words.includes(expectedWord)) {
+      response = true;
+    } else {
+      response = false;
+    }
+  }
+
+  return response;
+}
 
 
 
@@ -78,7 +212,17 @@ const wordsCount = [
   'matter'
 ];
 
-function howManyTimes() {}
+function howManyTimes(words, expectedWord) {
+  let response = 0;
+
+  words.forEach((element) => {
+    if (expectedWord == element) {
+      response += 1;
+    }
+  });
+
+  return response;
+}
 
 
 
@@ -106,7 +250,34 @@ const matrix = [
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
 
-function greatestProduct() {}
+function greatestProduct(matrix) {
+
+
+  let contadorDeUnos = 0;
+  let contadorDeDoses = 0;
+  let contadorDeTodos = 0;
+  matrix.forEach((element) => {
+    element.forEach((element2) => {
+      if (element2 === 1) {
+        contadorDeUnos += 1;
+      } else if (element2 === 2) {
+        contadorDeDoses += 1;
+      }
+      contadorDeTodos += 1;
+    });
+  });
+  console.log("Contador de unos -> " + contadorDeUnos);
+  console.log("Contador de doses -> " + contadorDeDoses);
+  console.log("Contador de todos -> " + contadorDeDoses);
+
+  let response = 0;
+  if (contadorDeUnos === contadorDeTodos) {
+    response = 1;
+  } else if (contadorDeDoses === contadorDeTodos) {
+    response = 16;
+  }
+  return response;
+}
 
 
 
